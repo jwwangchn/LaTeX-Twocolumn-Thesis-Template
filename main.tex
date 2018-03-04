@@ -1,0 +1,193 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  文章模板：A4 纸，小五字，单列（可根据要求改双列 twocolumn）
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,11pt,onecolumn,twoside]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  packages
+%    这部分声明需要用到的包
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{CTEX}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amsfonts,amssymb,graphicx}    % EPS 图片支持
+\usepackage{subfigure}   % 使用子图形
+\usepackage{indentfirst} % 中文段落首行缩进
+\usepackage{bm}          % 公式中的粗体字符（用命令\boldsymbol）
+\usepackage{multicol}    % 正文双栏
+\usepackage{indentfirst} % 中文首段缩进
+\usepackage{picins}      % 图片嵌入段落宏包 比如照片
+\usepackage{abstract}    % 2栏文档，一栏摘要及关键字宏包
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage[labelsep=quad,belowskip=-5pt,aboveskip=5pt,font=small]{caption}
+\usepackage{array}
+\usepackage[boxruled]{algorithm2e}
+\usepackage{algorithmicx}   %伪代码
+\usepackage{algpseudocode}  %伪代码
+\usepackage{bm}         % 公式符号加粗
+\usepackage{enumerate}
+
+% \usepackage[superscript,biblabel]{cite} 
+% \usepackage[super,square]{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  lengths
+%    下面的命令重定义页面边距，使其符合中文刊物习惯。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addtolength{\topmargin}{-54pt}
+\setlength{\oddsidemargin}{-0.9cm}  % 3.17cm - 1 inch
+\setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\textwidth}{17.00cm}
+\setlength{\textheight}{24.00cm}    % 24.62
+
+\setmainfont{Times New Roman}
+\setsansfont{Times New Roman}
+\setmonofont{Consolas}
+\setlength{\columnsep}{8mm}
+
+\titlespacing*{\section}
+{0pt}{2ex}{3.5ex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  定义标题格式，包括title，author，affiliation，email等。
+%  在任何用到中文的地方，用\begin{CJK} ... \end{CJK}将其括起来。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \renewcommand{\baselinestretch}{1.1} %定义行间距
+
+\setlength{\baselineskip}{16pt}
+\parindent 22pt %重新定义缩进长度
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 标题，作者，通信地址定义
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\huge{\textbf{基于超像素表达的面向目标提取最优分割算法}}}
+\author{王金旺\\[2pt]
+\normalsize
+武汉大学电子信息学院,湖北,武汉,430079 \\[2pt]}
+\date{}  % 这一行用来去掉默认的日期显示
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 首页页眉页脚定义
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fancypagestyle{plain}
+{
+\fancyhf{}
+\lhead{第~XX~卷\quad 第~X~期\\
+{2017~年~06~月}}
+\chead{\centering{武汉大学学报$\boldsymbol{\cdot}$信息科学版}\\
+{Geomatics and Information Science of Wuhan University}}
+\rhead{{Vol. XX, No. XX}\\
+{June. 2017}}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 首页后根据奇偶页不同设置页眉页脚
+% R,C,L分别代表左中右，O,E代表奇偶页
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RE]{2017年6月}
+\fancyhead[CE]{武汉大学学报$\cdot$信息科学版}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[CO]{王金旺：基于超像素表达的面向目标提取最优分割算法}
+\fancyhead[LO]{第~XX~卷~第~X~期}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 正文两栏环境不允许float环境，比如 figure, table。所以重新定义
+% figure，使之可以浮动到你想要的位置。table也同样，把figure改为
+% table就可以。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{figurehere}
+  {\def\@captype{figure}}
+  {}
+\makeatother
+
+\renewcommand\figurename{图}
+
+\renewcommand\refname{\zihao{5}\centerline{参~考~文~献}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  自定义命令
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 此行使文献引用以上标形式显示
+\newcommand{\supercite}[1]{\textsuperscript{\cite{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  显示title，并设页码为空（按杂志社要求）
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  中文摘要
+%  调整摘要、关键词，中图分类号的页边距
+%  中英文同时调整
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{includefiles/CAbstract.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  文章编号(左上角)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{minipage}[c]{10cm}
+\vspace{-35.5cm}
+文章编号~~~~1005$-$0388(2004)05$-$0505$-$04
+\end{minipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  正文由此开始－－－－－－－－－－－－－－－－－－－－－－－－－
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  恢复正文页边距
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\oddsidemargin}{-.5cm}  % 3.17cm - 1 inch
+\setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\textwidth}{17.00cm}
+\setlength{\parskip}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  分栏开始
+
+
+\begin{multicols}{2}
+\input{includefiles/0-引子.tex}
+
+\input{includefiles/1-概述.tex}
+
+\input{includefiles/2-基于像素的面向目标提取最优分割算法.tex}
+
+\input{includefiles/3-基于超像素表达的面向目标提取最优分割方法.tex}
+
+\input{includefiles/4-实验结果.tex}
+
+\input{includefiles/5-结语.tex}
+
+\input{includefiles/Reference.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 作者简历,段落插入图片用picins宏包和\parpic命令
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \normalsize
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  分栏结束
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{multicols}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  英文摘要
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{includefiles/EAbstract.tex}
+
+\end{document}
